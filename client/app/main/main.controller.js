@@ -2,24 +2,17 @@
 
 angular.module('portfolioShowcaseApp')
   .controller('MainCtrl', function ($scope, $http, socket) {
-    $scope.awesomeThings = [];
+    $scope.me = [];
+    $scope.repos = [];
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
+    $http.get('https://api.github.com/users/duyetdev').success(function(me) {
+      $scope.me = me;
+      socket.syncUpdates('thing', $scope.me);
     });
 
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
-
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
+    $http.get('https://api.github.com/users/duyetdev/repos').success(function(repos) {
+      $scope.repos = repos;
+    });
 
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('thing');

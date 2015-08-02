@@ -1,32 +1,63 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header>
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
-      </ul>
+    <div class="col-lg-3">
+        <div class="thumbnail" style="margin-top:25px">
+            <img data-ng-src="{{me.avatar_url}}" alt="" class="img-responsive" />
+            <div class="caption">
+              <h3> <span data-ng-bind="me.name"></span> </h3>
+              <p> <span data-ng-bind="'@' + me.login"></span> </p>
+            
+              <br />
+              <ul>
+                <li> <i class="fa fa-map-marker"></i> <span data-ng-bind="me.location"></span> </li>
+                <li> <i class="fa fa-inbox"></i> <span data-ng-bind="me.email"></span> </li>
+                <li> <i class="fa fa-code"></i> <span data-ng-bind="me.blog"></span> </li>
+              </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="page-header">
+              <h1>Github Project<small></small></h1>
+        </div>
+
+              <div class="list-group">
+                  <span href="#" class="list-group-item" data-ng-repeat="repo in repos">
+                      <span style="float:right">
+                        <span data-ng-bind="repo.language"></span>
+
+                        &middot;
+
+                        <a href="{{repo.html_url}}">
+                          <i class="fa fa-file"></i> <span data-ng-bind="repo.size"></span>
+                        </a>                        
+
+                        &middot;
+
+                        <a href="{{repo.html_url}}">
+                          <i class="fa fa-code-fork"></i> <span data-ng-bind="repo.forks_count"></span>
+                        </a>
+
+
+                  </span>
+
+                      <h4 class="list-group-item-heading" style="margin-bottom: 20px">
+                          <a href="{{repo.owner.url}}">{{repo.owner.login}}</a> / 
+                          <a href="{{repo.html_url}}"><span data-ng-bind="repo.name"></span> </a>
+                      </h4>
+                      <p class="list-group-item-text"> <span data-ng-bind="repo.description"></span> </p>
+                      <p style="color:#888; font-size: 13px; margin-top: 10px"> Updated at <span data-ng-bind="repo.updated_at"></span> </p>
+                  </span>
+              </div>
+        
     </div>
   </div>
-
-  <form class="thing-form">
-    <label>Syncs in realtime across clients</label>
-    <p class="input-group">
-      <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addThing()">Add New</button>
-      </span>
-    </p>
-  </form>
 </div>
 
 <footer class="footer">
