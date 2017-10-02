@@ -3,18 +3,18 @@
   "version": "0.0.0",
   "main": "server/app.js",
   "dependencies": {
-    "express": "~4.9.0",
+    "express": "~4.16.0",
     "morgan": "~1.0.0",
     "body-parser": "~1.5.0",
-    "method-override": "~1.0.0",
-    "serve-favicon": "~2.0.1",
+    "method-override": "~2.3.10",
+    "serve-favicon": "~2.4.5",
     "cookie-parser": "~1.0.1",
-    "express-session": "~1.0.2",
+    "express-session": "~1.15.6",
     "errorhandler": "~1.0.0",
-    "compression": "~1.0.1",
+    "compression": "~1.7.1",
     "lodash": "~2.4.1",
     "ejs": "~0.8.4",
-    "mongoose": "~4.0.3",
+    "mongoose": "~4.11.14",
     "jsonwebtoken": "^5.0.0",
     "express-jwt": "^3.0.0",
     "passport": "~0.2.0",
@@ -23,9 +23,10 @@
     "passport-google-oauth": "latest",
     "composable-middleware": "^0.3.0",
     "connect-mongo": "^0.8.1",
-    "socket.io": "^1.0.6",
-    "socket.io-client": "^1.0.6",
-    "socketio-jwt": "^3.0.0"
+    "socket.io": "^2.0.2",
+    "socket.io-client": "^2.0.2",
+    "socketio-jwt": "^3.0.0",
+    "snyk": "^1.42.2"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
@@ -89,7 +90,10 @@
   "scripts": {
     "start": "node server/app.js",
     "test": "grunt test",
-    "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
+    "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
-  "private": true
+  "private": true,
+  "snyk": true
 }
